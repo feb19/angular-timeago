@@ -8,25 +8,7 @@
 /* global angular */
 'use strict';
 ;
-angular.module('yaru22.angular-timeago', []).constant('timeAgoStringsConstant', {
-  prefixAgo: null,
-  prefixFromNow: null,
-  suffixAgo: '\u524d',
-  suffixFromNow: '\u4eca\u304b\u3089',
-  seconds: '1\u5206\u4ee5\u5185',
-  minute: '1\u5206',
-  minutes: '%d \u5206',
-  hour: '1\u6642\u9593',
-  hours: '%d\u6642\u9593',
-  day: '1\u65e5',
-  days: '%d\u65e5',
-  month: '1\u30f6\u6708',
-  months: '%d\u6708',
-  year: '1\u5e74',
-  years: '%d\u5e74',
-  numbers: [],
-  wordSeparator: ''
-}).directive('timeAgo', [
+angular.module('yaru22.angular-timeago', []).directive('timeAgo', [
   'timeAgo',
   'nowTime',
   function (timeAgo, nowTime) {
