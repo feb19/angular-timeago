@@ -2,8 +2,28 @@
 
 'use strict';
 
+;
+
 angular.module('yaru22.angular-timeago', [
-]).directive('timeAgo', function (timeAgo, nowTime) {
+]).constant('timeAgoStringsConstant', {
+      prefixAgo: null,
+      prefixFromNow: null,
+      suffixAgo: '前',
+      suffixFromNow: '今から',
+      seconds: '1分以内',
+      minute: '1分',
+      minutes: '%d 分',
+      hour: '1時間',
+      hours: '%d時間',
+      day: '1日',
+      days: '%d日',
+      month: '1ヶ月',
+      months: '%d月',
+      year: '1年',
+      years: '%d年',
+      numbers: [],
+      wordSeparator: ''
+}).directive('timeAgo', function (timeAgo, nowTime) {
   return {
     restrict: 'EA',
     link: function(scope, elem, attrs) {
@@ -34,30 +54,13 @@ angular.module('yaru22.angular-timeago', [
   return function() {
     return nowTime;
   };
-}).factory('timeAgo', function () {
+}).factory('timeAgo', function (timeAgoStringsConstant) {
   var service = {};
 
   service.settings = {
     refreshMillis: 60000,
     allowFuture: false,
-    strings: {
-      prefixAgo: null,
-      prefixFromNow: null,
-      suffixAgo: 'ago',
-      suffixFromNow: 'from now',
-      seconds: 'less than a minute',
-      minute: 'about a minute',
-      minutes: '%d minutes',
-      hour: 'about an hour',
-      hours: 'about %d hours',
-      day: 'a day',
-      days: '%d days',
-      month: 'about a month',
-      months: '%d months',
-      year: 'about a year',
-      years: '%d years',
-      numbers: []
-    }
+    strings: timeAgoStringsConstant
   };
 
   service.inWords = function (distanceMillis) {
